@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import AddressService from '../../../services/AddressService';
+import ToastService from '../../../services/ToastService';
 export default class Address extends React.Component {
 
   constructor() {
@@ -26,6 +27,9 @@ export default class Address extends React.Component {
     AddressService.delete({ address_id: id, action: type }).then((result) => {
 
       if (!result) return
+      if (result.success) {
+        ToastService.success(result.message);
+      }
       this.getAddress();
     }).catch((err) => {
       console.log(err);

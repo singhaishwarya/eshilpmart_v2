@@ -128,6 +128,18 @@ class Header extends Component {
   onTextChange = (e) => {
     this.setState({ searchQuery: e.target.value })
     const searchString = e.target.value.toLowerCase();
+    if (e.key === 'Enter') {
+      window.location = window.location.origin + "/product-list?q=" + searchString;
+      console.log("demo===", window.location)
+      // return <Redirect to="/product-list" />
+      // this.props.history.push({
+      //   pathname: '/product-list',
+      //   search: "?q=" + searchString,
+      //   state: {
+      //     rere: searchString
+      //   }
+      // });
+    }
     if (searchString?.length >= 3) {
       ProductService.fetchAllProducts({ q: searchString }).then((result) => {
         this.setState({ seachResults: result.data.length > 0 ? result.data : ['1'] });
@@ -137,7 +149,8 @@ class Header extends Component {
       this.setState({ seachResults: [] });
 
     }
-  };
+
+  }
 
   addToCart = (cartProduct) => {
     if (this.props.cart.find(({ product, variation_index }) => (product === cartProduct.id && variation_index === 0)) !== undefined) {
@@ -182,58 +195,64 @@ class Header extends Component {
     }
 
   }
-  productDetail = (value) => {
-    this.props.history.push({
-      pathname: '/product-detail',
-      search: "?pid=" + value?.content?.product_id
-    });
-  }
   renderSearchOptions = () => {
     let { seachResults } = this.state;
     return (
-      seachResults?.map((item, index) => (
-        item?.content ? <div className="result-product-wrapper" key={index}>
-          <Link to={{
-            pathname: `/product-detail`,
-            search: "?pid=" + item.content.product_id
+      <>
+        {seachResults?.slice(0, 10)?.map((item, index) => (
+          item?.content ? <div className="result-product-wrapper" key={index}>
+            <Link to={{
+              pathname: `/product-detail`,
+              search: "?pid=" + item.content.product_id
 
-          }}
-            onClick={() => this.setState({ searchQuery: '', seachResults: [] })
-            } >
-            <span className="pro-img">
-              <img onError={e => {
-                e.currentTarget.src = require('../public/No_Image_Available.jpeg')
-              }}
-                src={item?.images[0]?.image_url || "false"}
-                alt={item?.content?.title || "false"} />
-            </span>
-          </Link>
-          <span>
-            <span className="top-head">
-              <span className="pro-tile">{item?.content?.title}</span>
-              <span className="pro-price">&nbsp; <span>{item?.price} </span></span>
-            </span>
-            <span className="footer-head">
-              <span className="result-cat"><small>{item.category?.parent_category[0].title}, {item.category?.cate_title}</small></span>
-              {item.variation_available ? <Link to={{
-                pathname: `/product-detail`,
-                search: "?pid=" + item.content.product_id
-              }} onClick={() => this.setState({ searchQuery: '', seachResults: [] })}
-              > <span className="result-addtocart"> Add to Cart</span></Link> :
+            }}
+              onClick={() => this.setState({ searchQuery: '', seachResults: [] })
+              } >
+              <span className="pro-img">
+                <img onError={e => {
+                  e.currentTarget.src = require('../public/No_Image_Available.jpeg')
+                }}
+                  src={item?.images[0]?.image_url || "false"}
+                  alt={item?.content?.title || "false"} />
+              </span>
+            </Link>
+            <span>
+              <span className="top-head">
+                <span className="pro-tile">{item?.content?.title}</span>
+                <span className="pro-price">&nbsp; <span>{item?.price} </span></span>
+              </span>
+              <span className="footer-head">
+                <span className="result-cat"><small>{item.category?.parent_category[0].title}, {item.category?.cate_title}</small></span>
+                {item.variation_available ? <Link to={{
+                  pathname: `/product-detail`,
+                  search: "?pid=" + item.content.product_id
+                }} onClick={() => this.setState({ searchQuery: '', seachResults: [] })}
+                > <span className="result-addtocart"> Add to Cart</span></Link> :
 
-                <span className="result-addtocart" onClick={
-                  () => (
-                    this.props.cart.find(({ product, variation_index }) => (product === item.id && variation_index === 0)) !== undefined ? '' : this.addToCart([item])
-                  )
-                }> Add to Cart</span>
-              }
+                  <span className="result-addtocart" onClick={
+                    () => (
+                      this.props.cart.find(({ product, variation_index }) => (product === item.id && variation_index === 0)) !== undefined ? '' : this.addToCart([item])
+                    )
+                  }> Add to Cart</span>
+                }
+              </span>
             </span>
+            {/* <span className="sale-sticker">sale!</span> */}
+          </div > : <div><span>no products</span></div>
+        )
+
+        )
+        }
+        {/* {seachResults?.length > 10 && <Link to={{
+
+        }}
+          onClick={() => this.setState({ searchQuery: '', seachResults: [] })
+          } >
+          <span className="pro-img">
+            View More...
           </span>
-          {/* <span className="sale-sticker">sale!</span> */}
-        </div > : <div><span>no products</span></div>
-
-      )
-      ));
+        </Link>} */}
+      </>);
   };
 
   logout = () => {
@@ -374,7 +393,7 @@ class Header extends Component {
                 <div className="form-inline my-2 my-lg-0">
                   <div className="search-bar w-100 d-flex justify-content-start" >
                     <form className="w-100 position-relative">
-                      <input onChange={this.onTextChange} value={searchQuery} onClick={this.onTextChange} placeholder="Search" />
+                      <input onChange={this.onTextChange} value={searchQuery} onClick={this.onTextChange} onKeyDown={this.onTextChange} placeholder="Search" />
                       {searchQuery &&
                         <button onClick={() => this.setState({ searchQuery: '', seachResults: [] })} type="button" className="closeBtn" ><FontAwesomeIcon icon={faTimes} /></button>
                       }

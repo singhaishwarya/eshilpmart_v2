@@ -113,8 +113,15 @@ export default class AddEditAddress extends React.Component {
           .then((result) => {
 
             if (!result) return ToastService.error("Please fill form details")
-            if (result.data.success) {
-              window.location.pathname === '/checkout' ? this.props.selectedAddress(this.state.fields) : window.history.back()
+            if (result.data.success || result.success) {
+              if (window.location.pathname === '/checkout') { this.props.selectedAddress(this.state.fields) }
+              else {
+                ToastService.success(result.message);
+                setTimeout(
+                  () => { window.history.back() },
+                  100
+                )
+              }
             }
             else {
               return ToastService.error(Object.values(result.data.data)[0][0])
