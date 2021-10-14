@@ -166,6 +166,7 @@ export default class OrderDetail extends React.Component {
           </div>
 
           {orderDetail?.product_details?.map((productItem, index) => (
+
             <div className="card mb-3 shadow" key={index}>
               <div className="card-body">
                 <div className="row">
@@ -187,10 +188,10 @@ export default class OrderDetail extends React.Component {
                       </div>
                       <div className="col-sm-9 col-8">
                         <div className="orderproductInfo">
-                          <span className="title">{productItem.awb_number.product[0].title.title}
+                          <span className="title">{productItem?.awb_number?.product[0].title.title}
                           </span>
-                          {/* <span>₹ {productItem.price}</span> */}
-                          {/* <span className="plusItem"><small>+</small>4</span> */}
+                          {productItem?.awb_number?.product[0]?.variation_index.detail?.map((variations, index) => (<span key={index}> {variations.variation_id}:{variations.variation_value} </span>))
+                          }
                         </div>
                       </div>
                     </div>
@@ -199,7 +200,8 @@ export default class OrderDetail extends React.Component {
                     <div className="orderRangewrap">
                       <div className="orderRange">
                         <span className="orderd"><small>Orderd</small><p className="rangeDate"><small>
-                          {format(new Date(orderDetail.created_at), 'dd-MM-yyyy')}
+                          {/* {format(new Date(orderDetail.created_at), 'dd-MM-yyyy')} */}
+                          {orderDetail.created_at}
                         </small></p></span>
                         {/* <span className="packed"><small>Packed</small><p className="rangeDate"><small>Sat, 15 June 21</small></p></span>
                       <span className="shipped"><small>Shipped</small><p className="rangeDate"><small>Sat, 15 June 21</small></p></span>
@@ -228,8 +230,10 @@ export default class OrderDetail extends React.Component {
                       </div>
                       <div className="col-sm-6 col-6">
                         <div className="orderproductInfo">
-                          <span className="title">{product.title.title}</span>
-                          <span>₹ {product.price}</span>
+                          <span className="title">{product?.title?.title}</span>
+                          <span>₹ {product.price} </span>
+                          {product?.variation_index.detail?.map((variations, index) => (<span key={index}> {variations.variation_id}:{variations.variation_value} </span>))
+                          }
                         </div>
                       </div>
                       <div className="col-sm-4 col">
@@ -237,14 +241,14 @@ export default class OrderDetail extends React.Component {
                           <div className="orderstate"> <span>{product.is_cancel ? "Cancelled" : getOrderStatus(orderDetail.status)}</span></div>
                           <div className="needhlep" onClick={this.toggleModal}>
                             <Link to={`/order-detail/${product.product_id}/reviews`}>
-                            <FontAwesomeIcon icon={faStar}/> Rate & Review Product</Link><br/>
+                              <FontAwesomeIcon icon={faStar} /> Rate & Review Product</Link><br />
                             <span><FontAwesomeIcon icon={faQuestionCircle} /> Need Help</span>
-                            {product.is_cancel === 0 && <button className="cancelled" onClick={() => (productItem.awb_number.number === null ? this.cancelOrder(productItem.order_id, product) : this.toggleModal)}><FontAwesomeIcon icon={faTimesCircle}/> {productItem.awb_number.number === null ? "Cancel Order" : "Request Cancellation"}</button>}
-                            </div>
-                            
+                            {product.is_cancel === 0 && <button className="cancelled" onClick={() => (productItem.awb_number.number === null ? this.cancelOrder(productItem.order_id, product) : this.toggleModal)}><FontAwesomeIcon icon={faTimesCircle} /> {productItem.awb_number.number === null ? "Cancel Order" : "Request Cancellation"}</button>}
+                          </div>
+
                         </div>
                       </div>
-                      
+
                       {/* <div className="col-sm-2 col">
                         <div className="orderstatus">
                           {product.is_cancel === 0 && <button className="cancelled" onClick={() => (productItem.awb_number.number === null ? this.cancelOrder(productItem.order_id, product) : this.toggleModal)}>{productItem.awb_number.number === null ? "Cancel Order" : "Request Cancellation"}</button>}
@@ -275,7 +279,7 @@ export default class OrderDetail extends React.Component {
                   </div>
                 </div>
               </div> */}
-              <span className="return_policy">Return Policy <Link to="/exchange-policy">Know More</Link></span>
+                <span className="return_policy">Return Policy <Link to="/exchange-policy">Know More</Link></span>
               </div>
             </div>
 

@@ -182,12 +182,14 @@ export default class Orders extends React.Component {
                             <div className="col-9">
                               <div className="orderproductInfo">
                                 <span className="title">{item.product_details[0]?.awb_number.product[0]?.title?.title}</span>
-                                
+
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div className="col-sm-2 col-4"><span>{format(new Date(item.created_at), 'dd-MM-yyyy')}</span></div>
+                        <div className="col-sm-2 col-4"><span>{item.created_at}
+                          {/* format(new Date(item.created_at), 'dd-MM-yyyy')} */}
+                        </span></div>
                         <div className="col-sm-2 col-4"><span>₹ {item.order_total}</span></div>
                         <div className="col-sm-2 col-4">
                           <div className="orderstatus">

@@ -28,7 +28,7 @@ class ProductDetail extends React.Component {
     this.requiredBinded = this.required.bind(this);
     this.error = false;
     this.state = {
-      combination: [], finCombination: [], currentVariationIndex: null, variationSelected: false,
+      combination: [], currentVariationIndex: null, variationSelected: false,
       isActiveTab: 0, productCatId: 0, _variationIndex: 0,
       filterParams: { product_ids: [props.match.params.productId] },
       wishlistStatus: false,
@@ -289,28 +289,21 @@ class ProductDetail extends React.Component {
 
   }
   makeCombo = (key, value) => {
-    if (this.state.combination.length > 0) {
-      this.state.combination.map((item, index) => {
-        if (item.variation_id === key && item.variation_value !== value) {
-          item.variation_value = value;
-        }
-        else {
-          this.setState(prevState => ({
-            combination: [...prevState.combination, { "variation_id": key, "variation_value": value }]
-          }));
 
-        }
-      });
-      const filteredArr = this.state.combination?.reduce((acc, current) => {
-        const x = acc.find(item => item.variation_value === current.variation_value);
-        if (!x) {
-          return acc.concat([current]);
-        } else {
-          return acc;
-        }
-      }, []);
-      this.setState({ finCombination: filteredArr });
-      this.getVariationIndex(filteredArr);
+    let combi = this.state.combination, objIndex;
+    if (combi.length > 0) {
+      objIndex = combi.findIndex((obj => obj.variation_id === key));
+
+      if (objIndex !== -1) {
+        combi.splice(objIndex, 1, { "variation_id": key, "variation_value": value });
+        this.setState({ combination: combi });
+      }
+      else {
+        this.setState(prevState => ({
+          combination: [...prevState.combination, { "variation_id": key, "variation_value": value }]
+        }));
+      }
+      this.getVariationIndex(this.state.combination);
     } else {
       this.setState({ combination: [{ "variation_id": key, "variation_value": value }] })
     }
@@ -330,7 +323,7 @@ class ProductDetail extends React.Component {
   }
 
   limitAlert = () => {
-    return ToastService.error("Compare Cart is full(limit :5)")
+    return ToastService.error("Compare Cart is full(limit:5)")
   }
   renderItemGallery = (imgUrl) => {
     if (imgUrl) {
@@ -365,6 +358,7 @@ class ProductDetail extends React.Component {
   render() {
     const { productDetailData, productQuantity, showModal, shareUrl, title, variations, productDetailDataPrice, currentvalue2, currentvalue1, productCatId, imgProps, currentVariationIndex, fields } = this.state;
     const { wishlist } = this.props;
+
     return (
       <>
         <section id="maincontent">
@@ -491,34 +485,34 @@ class ProductDetail extends React.Component {
                     //style={askForm}
                     shouldCloseOnOverlayClick={true}
                     ariaHideApp={false}
-                  > 
-                   <span className="float-right"><FontAwesomeIcon className="text-right" icon={faTimes}/></span>
-                  <Form ref={c => { this.form = c }} >
+                  >
+                    <span className="float-right"><FontAwesomeIcon className="text-right" icon={faTimes} /></span>
+                    <Form ref={c => { this.form = c }} >
 
                       {/* <form onSubmit={this.handleSubmit}> */}
                       <h4 className="mb-4">Ask a Question</h4>
                       {Object.keys(this.props.userData).length > 0 ? '' : <><div className="form-group">
                         <label htmlFor="name" className="col-form-label">Name<span>*</span></label>
-                        
-                          <input type="text" readonly className="form-control" id="name" value={fields.name} onChange={this.handleChange.bind(this, "msg")} />
-                        
+
+                        <input type="text" readonly className="form-control" id="name" value={fields.name} onChange={this.handleChange.bind(this, "msg")} />
+
                       </div>
 
                         <div className="form-group">
                           <label htmlFor="Email" className="col-form-label">Email<span>*</span></label>
-                         
-                            <input type="text" readonly className="form-control" id="Email" value={fields.email} onChange={this.handleChange.bind(this, "msg")} />
-                            <small>Your email address will not be published.</small>
-                          
+
+                          <input type="text" readonly className="form-control" id="Email" value={fields.email} onChange={this.handleChange.bind(this, "msg")} />
+                          <small>Your email address will not be published.</small>
+
                         </div></>}
 
                       <div className="form-group">
                         <label htmlFor="inquiry" className="col-form-label">Your inquiry<span>*</span></label>
-                        
-                          <Textarea className="form-control" name="" rows="4" cols="50" name="Comment" placeholder="Type your Question..." value={fields.msg} validations={[this.required]} onChange={this.handleChange.bind(this, "msg")}>
-                          </Textarea>
 
-                        
+                        <Textarea className="form-control" name="" rows="4" cols="50" name="Comment" placeholder="Type your Question..." value={fields.msg} validations={[this.required]} onChange={this.handleChange.bind(this, "msg")}>
+                        </Textarea>
+
+
                       </div>
 
                       <button className="btn btn-theme" value="Submit" disabled={false} onClick={this.handleSubmit}> Submit
@@ -531,7 +525,9 @@ class ProductDetail extends React.Component {
 
                 <div className="product-meta py-2">
 
-                  <div className="seller-details-box my-3" onClick={() => this.handleSellerProfile(productDetailData?.vendor?.brand)}>
+                  <div className="seller-details-box my-3"
+                  // onClick={() => this.handleSellerProfile(productDetailData?.vendor?.brand)}
+                  >
                     {/* <div className="title-meta">Know your weaver</div> */}
                     <div className="seller-head"><strong>Sold by :</strong> </div>
                     <div className="seller-contact">
