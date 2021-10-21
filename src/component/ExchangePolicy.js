@@ -22,11 +22,11 @@ export default class ExchangePolicy extends React.Component {
             <div className="col">
 
               <div className="entry-content">
-                
+
                 <h4>Overview</h4>
                 <p>As a Customer, if you’re considering a product return, please note the following:</p>
                 <ul>
-                  <li> All hand-woven and hand-crafted products on the portal are produced by weavers and artisans in villages mostly at their homes.</li>
+                  {/* <li> All hand-woven and hand-crafted products on the portal are produced by weavers and artisans in villages mostly at their homes.</li> */}
                   <li>Unevenness in weaves, prints, minor slubs in fabric and slight variation in color are expected outcome of an authentic craft process. These variations are typical characteristics of any hand-crafted product and are not to be considered as damage or defective.</li>
                 </ul>
                 <h4>Return Policy</h4>

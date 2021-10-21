@@ -50,7 +50,7 @@ export default class Footer extends React.Component {
                         </ul>
                       </div>
                     </div>
-                    <div className="col-lg-3 col-md-3 col-6">
+                    {/* <div className="col-lg-3 col-md-3 col-6">
                       <h5>Partner with us</h5>
                       <div className="footer-links">
                         <ul>
@@ -59,7 +59,7 @@ export default class Footer extends React.Component {
                           <li><Link to="/corporate-enquiries">Corporate Enquiries </Link></li>
                         </ul>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-lg-3 col-md-3 col-6">
                       <h5>Need Help?</h5>
                       <div className="footer-links">
