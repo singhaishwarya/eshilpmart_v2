@@ -5,7 +5,7 @@ export default class Footer extends React.Component {
   state = {
     footerItems: [
       <div className="swiper-slide"><img src={require("../public/india-gov.webp")} className="img-fluid" alt="India gov" /></div>,
-      <div className="swiper-slide"><img src={require("../public/mot.webp")} className="img-fluid" alt="Ministry Textile" /></div >,
+      <div className="swiper-slide"><img src={require("../public/mot.webp")} className="img-fluid" alt="Ministry Rural Development" /></div >,
       <div className="swiper-slide"><img src={require("../public/di.webp")} className="img-fluid" alt="DIC" /></div >,
       <div className="swiper-slide"><img src={require("../public/india_post.webp")} className="img-fluid" alt="India Post" /></div >,
       <div className="swiper-slide"> <img src={require("../public/csc.webp")} className="img-fluid" alt="CSC" /></div>,
@@ -101,7 +101,7 @@ export default class Footer extends React.Component {
           <div className="copyright-footer">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-md-6 col-12"> <small>Ministry of Textile
+                <div className="col-md-6 col-12"> <small>Ministry of Rural Development
                   <i className="fa fa-copyright"></i> 2020. <br />
                   Designed &amp; Developed by Digital India Corporation</small>
                 </div>

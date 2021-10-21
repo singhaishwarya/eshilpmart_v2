@@ -25,8 +25,7 @@ export default class CustomerFeedback extends React.Component {
             <span>  <ReactStars count={5} size={10} /></span>
           </div>
           <div className="testimonial-text">
-            <p>I am a big fan of Handloom and Handicraft items. Thanks to the Ministry of
-              Textile for giving us a platform to shop our favourite handloom and
+            <p>I am a big fan of Handloom and Handicraft items. Thanks to the Ministry of Rural Development for giving us a platform to shop our favourite handloom and
               handicraft product from a single stop shop.​​</p>
             <h5>Anuradha Mitra</h5>
 
@@ -43,7 +42,7 @@ export default class CustomerFeedback extends React.Component {
           </div>
           <div className="testimonial-text">
             <p>I am a big fan of Handloom and Handicraft items. Thanks to the Ministry of
-              Textile for giving us a platform to shop our favourite handloom and
+              Rural Development for giving us a platform to shop our favourite handloom and
               handicraft product from a single stop shop.​​</p>
             <h5>Anuradha Mitra</h5>
 
@@ -60,7 +59,7 @@ export default class CustomerFeedback extends React.Component {
           </div>
           <div className="testimonial-text">
             <p>I am a big fan of Handloom and Handicraft items. Thanks to the Ministry of
-              Textile for giving us a platform to shop our favourite handloom and
+              Rural Development for giving us a platform to shop our favourite handloom and
               handicraft product from a single stop shop.​​</p>
             <h5>Anuradha Mitra</h5>
 
@@ -77,7 +76,7 @@ export default class CustomerFeedback extends React.Component {
           </div>
           <div className="testimonial-text">
             <p>I am a big fan of Handloom and Handicraft items. Thanks to the Ministry of
-              Textile for giving us a platform to shop our favourite handloom and
+              Rural Development for giving us a platform to shop our favourite handloom and
               handicraft product from a single stop shop.​​</p>
             <h5>Anuradha Mitra</h5>
 

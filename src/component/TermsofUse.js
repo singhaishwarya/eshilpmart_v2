@@ -25,7 +25,7 @@ export default class TermsofUse extends React.Component {
                 <p>Name of Organisation: eShilpmart<br />
                   Terms of Use Policy:<br />
                   Welcome to the eshilpmart.gov.in.<br />
-                  eShilpmart.gov.in is a Social Marketplace for Artisan/Weaver Community based Producer (Example, Individual Artisans, and Self-help groups – SHG) and small entrepreneur registered with Ministry of Textile and having Handcraft ID to list and sell their produce online, and henceforth referred to as “eShilpmart Platform”.</p>
+                  eShilpmart.gov.in is a Social Marketplace for Artisan/Weaver Community based Producer (Example, Individual Artisans, and Self-help groups – SHG) and small entrepreneur registered with Ministry of Rural Development and having Handcraft ID to list and sell their produce online, and henceforth referred to as “eShilpmart Platform”.</p>
                 <ul>
                   <li><strong>Note: The platform consists of various business services including Weavers Directory, Listings. The platform is owned and operated by eShilpmart, India here after referred as “eShilpmart entity” or “eShilpmart”.</strong></li>
                   <li> <strong>Alert: Please read carefully the following terms of use. By registering for accessing, selling, buying, browsing, downloading from, uploading to or using the eShilpmart platform.</strong>
