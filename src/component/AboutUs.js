@@ -26,7 +26,7 @@ export default class AboutUs extends React.Component {
 
                   <p>#Vocal4handmade #Vocalforlocal #ilovehandloom</p>
 
-                  <p>Eshilpmart is a brain child of Digital India & Ministry of textiles. It is like a true manifestation of our digitally aided vision for Indian handlooms & handicrafts. At Eshilpmart, we thrive to celebrate, promote & recreate the richness & diversity of Indian handicrafts.</p>
+                  <p>Eshilpmart is a brain child of Digital India & Ministry of Rural Development. It is like a true manifestation of our digitally aided vision for Indian handlooms & handicrafts. At Eshilpmart, we thrive to celebrate, promote & recreate the richness & diversity of Indian handicrafts.</p>
 
                   <p>We are committed to recognise, nurture and amplify the unique craft & talented artisans by giving them a space to exhibit their work, a technical hand to thrive in the digital world, backed by consistent industrial training & workshops. The aim is to revive the vibrantly creative spirit of Indian handicrafts in the global arena. This designated space will become the outlet for not just to “sell the craft “but to become the source to initiate many meaningful conversations & unheard stories about the lives of Indian artisans.</p>
 

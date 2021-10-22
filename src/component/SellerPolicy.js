@@ -29,7 +29,7 @@ export default class SellerPolicy extends React.Component {
                 <ul>
                   <li>Register on the portal by providing the following information:
                     <ul>
-                      <li>A valid Handicraft/Handloom ID(issued by Ministry of Textile)</li>
+                      <li>A valid Handicraft/Handloom ID(issued by Ministry of Rural Development)</li>
                       <li>Valid Bank Account</li>
                     </ul>
                   </li>

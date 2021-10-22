@@ -51,9 +51,9 @@ export default class Dashboard extends React.Component {
               {/* } */}
             </div>
           </div>
-          <LiveStats />
+          {/* <LiveStats /> */}
           <CustomerFeedback />
-          <PressArticles />
+          {/* <PressArticles /> */}
         </div>
       </section>
 

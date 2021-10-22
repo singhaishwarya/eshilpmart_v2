@@ -9,6 +9,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import Textarea from "react-validation/build/textarea";
 import { Link } from "react-router-dom";
+import ToastService from '../../../services/ToastService';
 export default class OrderDetail extends React.Component {
 
   constructor(props) {
@@ -81,9 +82,10 @@ export default class OrderDetail extends React.Component {
   }
   cancelOrder = (order, product) => {
     OrderService.orderCancel({ order_id: order, product_id: product.product_id, variation_index: product.variation_index }).then((result) => {
+      // ToastService.success(result?.data);
       this.setState(prevState => ({
         orderDetail: {
-          ...prevState.orderDetail, product_details: result.data.product_details
+          ...prevState.orderDetail, product_details: result?.data?.product_details
         }
       }))
     }).catch((err) => {

@@ -28,7 +28,7 @@ class ProductDetail extends React.Component {
     this.requiredBinded = this.required.bind(this);
     this.error = false;
     this.state = {
-      combination: [], currentVariationIndex: null, variationSelected: false,
+      combination: [], currentVariationIndex: 0, variationSelected: false,
       isActiveTab: 0, productCatId: 0, _variationIndex: 0,
       filterParams: { product_ids: [props.match.params.productId] },
       wishlistStatus: false,

@@ -205,13 +205,16 @@ class CheckoutComp extends React.Component {
           localStorage.setItem('orderId', result.data.order_details.id);
         }
         if (paymentType === 'cod') {
+
+          localStorage.setItem('paymentType', 'cod');
+          localStorage.setItem('orderId', result.data.order_details.id);
+          localStorage.removeItem("checkOutData");
+          localStorage.removeItem("totalCartCost");
+          this.props.emptyCart();
           this.props.history.push({
             pathname: '/thankyou/for-payment/',
             state: { paymentType: this.state.paymentType }
           });
-          localStorage.removeItem("checkOutData");
-          localStorage.removeItem("totalCartCost");
-          this.props.emptyCart();
         }
         this.setState({ isLoaded: true });
       }).catch((err) => {
@@ -497,11 +500,9 @@ class CheckoutComp extends React.Component {
                       <div className="card-body">
                         <div className="checkoutSteps">
                           <div className="checkoutinfo orderSummary">
-                            {/* {checkOutData.map((item, index) => (
-                              finItem = item.product_details || item, */}
                             <div className="checkoutInfo_img">
                               <div className="orderImgs">
-                                <img src={checkOutData[0].product?.images[checkOutData[0]?.variation_index]?.image_url || checkOutData[0]?.product_details?.images[checkOutData[0]?.variation_index]?.image_url || checkOutData[0]?.images[checkOutData[0]?.variation_index]?.image_url || "false"} className="img-fluid" onError={e => { e.currentTarget.src = require('../public/No_Image_Available.jpeg') }} />
+                                <img src={checkOutData[0].product?.images[checkOutData[0]?.variation_index]?.image_url || checkOutData[0]?.product_details?.images[checkOutData[0]?.variation_index]?.image_url || checkOutData[0]?.images[checkOutData[0]?.variation_index]?.image_url || checkOutData[0]?.images[0].image_url || "false"} className="img-fluid" onError={e => { e.currentTarget.src = require('../public/No_Image_Available.jpeg') }} />
 
                               </div>
                               {checkOutData.length > 1 && <span>+{checkOutData.length - 1} {(checkOutData.length - 1) > 1 ? "Items" : "Item"}</span>}

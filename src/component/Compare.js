@@ -79,10 +79,18 @@ class Compare extends Component {
   }
 
 
+  productDetail = (value) => {
 
+    this.props.history.push({
+      pathname: '/product-detail',
+      search: "?pid=" + value?.product?.id
+    });
+  }
   render() {
     const { compare } = this.props
     const { compareProducts } = this.state;
+    let _variationIndex = 0;
+
     return (
       <section id="main-content">
         <div className="container-fluid">
@@ -100,6 +108,12 @@ class Compare extends Component {
                   <Link to='/product-list'>Return to shop</Link>
                 </div>}
                 {compareProducts?.map((item, index) => {
+                  item.product.variation_available ? item.product.images.forEach((item2, index) => {
+
+                    if (item2.variation_index === item.variation_index) {
+                      _variationIndex = index;
+                    }
+                  }) : _variationIndex = 0;
                   return (
                     <div className="compare-col" key={index}>
                       <div className="compare-col-row">
@@ -107,12 +121,12 @@ class Compare extends Component {
                           this.deleteCompare(item, index)
                         }}>Remove</span>
                         <span className="item-img mb-2">
-                          <img src={item?.product.images[item.variation_index]?.image_url || require('../public/No_Image_Available.jpeg')} alt="product img" className="img-fluid"
+                          <img src={item?.product?.images[_variationIndex]?.image_url || require('../public/No_Image_Available.jpeg')} alt="product img" className="img-fluid" onClick={() => this.productDetail(item)}
                             onError={e => { e.currentTarget.src = require('../public/No_Image_Available.jpeg') }}
                           />
                         </span>
-                        <span className="product-name mb-2">{item?.product.content?.title}</span>
-                        <div className="proPrice mb-2">{item?.product?.prices[item.variation_index]?.price || 0}</div>
+                        <span className="product-name mb-2">{item?.product?.content?.title}</span>
+                        <div className="proPrice mb-2">{item?.product?.prices[item.variation_index]?.price || item?.product?.price}</div>
                         <span className="add-cart" onClick={() => this.addToCart(item, index)}>Add to Cart</span>
                       </div>
                       <div className="compare-col-row"><p>{item.product.content?.product_description}</p></div>
