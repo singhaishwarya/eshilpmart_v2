@@ -115,10 +115,10 @@ a {
 
 .appLogo {
   width: auto;
-  height: 75px;
+  height: auto;
 }
 .appLogo img {
-  width: 110px;
+  width: 170px;
   padding: 7px 0;
 }
 
