@@ -18,6 +18,21 @@ export default class ProductService extends Component {
 
     }
   }
+  static fetchReviews = async (data) => {
+    try {
+      config.url = baseUrl + 'product-reviews';
+      config.method = 'get';
+      config.params = data;
+      config.data = '';
+      const response = await axios(config);
+      return response.data ? response.data : [];
+    } catch (error) {
+      const { response } = error;
+      if (!response) return;
+      console.log(`FETCH GET ERROR`, response);
+
+    }
+  }
   static fetchVendor = async (data) => {
     try {
       config.url = baseUrl + 'vendor';
@@ -26,6 +41,22 @@ export default class ProductService extends Component {
       config.data = '';
       const response = await axios(config);
       return response.data ? response.data.data : [];
+    } catch (error) {
+      const { response } = error;
+      if (!response) return;
+      console.log(`FETCH GET ERROR`, response);
+
+    }
+  }
+
+  static isLikeReview = async (data) => {
+    try {
+      config.url = baseUrl + 'is-like-review';
+      config.method = 'post';
+      config.params = data;
+      config.data = '';
+      const response = await axios(config);
+      return response.data ? response.data : [];
     } catch (error) {
       const { response } = error;
       if (!response) return;

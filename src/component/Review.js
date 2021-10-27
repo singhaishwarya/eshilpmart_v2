@@ -65,7 +65,7 @@ export default class Review extends React.Component {
       data.append('product_id', this.state.fields.product_id);
       data.append('product_review_title', this.state.fields.product_review_title);
       data.append('product_review_description', this.state.fields.product_review_description);
-      data.append('images', this.state.fields.images);
+      // data.append('images', this.state.fields.images);
 
 
       ReviewService.addEdit(data)
@@ -162,7 +162,7 @@ export default class Review extends React.Component {
                     <input type="text" className="form-control" name="product_review_title" value={fields.product_review_title} onChange={this.handleChange.bind(this, "product_review_title")} placeholder="Review Title..." />
                   </div>
 
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <div className="photoUpload">
                       <div className="uploaded">
                         {fields.images.map((item, index) =>
@@ -176,7 +176,7 @@ export default class Review extends React.Component {
 
                       <label htmlFor="uploadpic" className="photoBg"><FontAwesomeIcon icon={faCamera} /></label>
                     </div>
-                  </div>
+                  </div> */}
                   <button type="submit" onClick={(e) => this.handleSubmitReview(e)} className="btn btn-theme" >Submit Review</button>
 
                 </div>

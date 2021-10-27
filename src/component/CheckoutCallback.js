@@ -6,29 +6,42 @@ export default class CheckoutCallback extends React.Component {
 
   constructor(props) {
     super(props); this.state = {
-      orderPlacedData: {},
+      orderPlacedData: {}, orderList: [],
+      isLoaded: false
     };
-    this.props.location?.state?.paymentType !== 'paytm' &&
-      this.orderValidate(localStorage.getItem('paymentType'), localStorage.getItem('orderId'))
+    // this.props.location?.state?.paymentType !== 'paytm' &&
+    //   this.orderValidate(localStorage.getItem('paymentType'), localStorage.getItem('orderId'))
   }
-
-  orderValidate = (paymentType, orderId) => {
-
-    OrderService.orderValidate({
-      online_type: paymentType, order_id: orderId
-    }).then(async (result) => {
-      this.setState({ isLoaded: true })
+  componentDidMount() {
+    this.getOrders(localStorage.getItem('orderId'));
+  }
+  getOrders = (queryParams) => {
+    OrderService.list(queryParams).then((result) => {
       if (!result) return
-      this.setState({ orderPlacedData: result?.data?.order_details || {} })
-      localStorage.removeItem("checkOutData");
-      localStorage.removeItem("totalCartCost");
-      localStorage.removeItem("paymentType");
-      this.props.emptyCart();
-    })
+      this.setState({ orderList: result, isLoaded: true });
+    }).catch((err) => {
+      console.log(err);
+      this.setState({ isLoaded: true })
+    });
   }
+  // orderValidate = (paymentType, orderId) => {
+
+  //   OrderService.orderValidate({
+  //     online_type: paymentType, order_id: orderId
+  //   }).then(async (result) => {
+  //     this.setState({ isLoaded: true })
+  //     if (!result) return
+  //     this.setState({ orderPlacedData: result?.data?.order_details || {} })
+  //     localStorage.removeItem("checkOutData");
+  //     localStorage.removeItem("totalCartCost");
+  //     localStorage.removeItem("paymentType");
+  //     this.props.emptyCart();
+  //   })
+  // }
 
   render() {
-    const { orderPlacedData } = this.state;
+    const { orderList } = this.state;
+    console.log("demo====", orderList)
     return (
       // <div className="empty-wishlist">
       //   <h2>Thank you for shopping with us.</h2>
