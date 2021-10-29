@@ -388,6 +388,7 @@ class ProductDetail extends React.Component {
     let rate1 = 0, rate2 = 0, rate3 = 0, rate4 = 0, rate5 = 0;
     const { wishlist } = this.props;
 
+
     return (
       <>
         <section id="maincontent">
@@ -428,7 +429,7 @@ class ProductDetail extends React.Component {
                   <p className="product-price">
                     <span>₹</span> {productDetailDataPrice || 0}</p>
                   <p className="available">Availability: &nbsp;
-                    {productDetailData?.inventory?.length > 0 && <span className="text-success">{productDetailData?.inventory[currentVariationIndex]?.stock_value === 0 ? "Out of Stock" : "In stock"}</span>}
+                    {productDetailData?.inventory?.length > 0 && <span className="text-success">{productDetailData?.inventory[currentVariationIndex]?.stock_value == 0 ? "Out of Stock" : "In stock"}</span>}
                   </p>
                   <div className="addtocart d-flex justify-content-start">
                     <div className="product-qty">
