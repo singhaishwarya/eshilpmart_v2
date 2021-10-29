@@ -427,10 +427,9 @@ class ProductDetail extends React.Component {
                   <h1>{productDetailData?.content?.title}</h1>
                   <p className="product-price">
                     <span>₹</span> {productDetailDataPrice || 0}</p>
-                  {/* <p className="available">Availability: &nbsp;<span className="text-success">In Stock</span> */}
-                  {/* <span className="text-danger">Out of Stock</span> */}
-                  {/* </p> */}
-                  {/* <div className="short-decription"><p>{productDetailData?.content?.product_description}</p></div> */}
+                  <p className="available">Availability: &nbsp;
+                    {productDetailData?.inventory?.length > 0 && <span className="text-success">{productDetailData?.inventory[currentVariationIndex]?.stock_value === 0 ? "Out of Stock" : "In stock"}</span>}
+                  </p>
                   <div className="addtocart d-flex justify-content-start">
                     <div className="product-qty">
                       <div className="input-group">
