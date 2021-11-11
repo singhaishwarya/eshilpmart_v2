@@ -209,6 +209,9 @@ a {
 .header-middle img {
   max-width: 175px;
 }
+.launchingsoon {
+  max-width: 100px !important;
+}
 .search-bar {
   border: 1px solid #0b4981;
   border-left: 0 !important;

@@ -200,17 +200,17 @@ class Header extends Component {
       Object.keys(this.props.userData).length > 0
         ? this.addToCartApi(cartProduct)
         : this.props.addToCart({
-            product: cartProduct?.id,
-            variation_index: 0,
-            quantity: 1,
-          });
+          product: cartProduct?.id,
+          variation_index: 0,
+          quantity: 1,
+        });
     }
   };
   errorAlert = (product, type) => {
     return ToastService.error(
       product?.content?.title +
-        " is " +
-        (type === "cart" ? "already in cart" : "removed from wishlist"),
+      " is " +
+      (type === "cart" ? "already in cart" : "removed from wishlist"),
     );
   };
 
@@ -610,6 +610,11 @@ class Header extends Component {
                   {this.renderSearchOptions()}
                 </div>
               </div>
+              <div><img
+                className="launchingsoon"
+                src={require("../public/launchingsoon.png")}
+                alt=" logoeship"
+              /></div>
               <ul className="navbar-nav flex-row">
                 {this.props.userData.token ? (
                   <li
