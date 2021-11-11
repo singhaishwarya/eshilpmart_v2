@@ -21,6 +21,8 @@ import ReactImageZoom from 'react-image-zoom';
 import OrderService from '../services/OrderService';
 import Form from "react-validation/build/form";
 import Textarea from "react-validation/build/textarea";
+import { format } from 'date-fns';
+
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -670,7 +672,7 @@ class ProductDetail extends React.Component {
                               <div className="d-flex align-items-center mr-4 pr-2"><img className="rounded-circle" src={item.user_id.profile_photo_url} width={50} alt="Sunil Aggrawal" />
                                 <div className="pl-3">
                                   <h6 className="fs-sm mb-0">{item.user_id.first_name} {item.user_id.last_name}</h6>
-                                  <small className="fs-ms text-muted">{item.created_at}</small>
+                                  <small className="fs-ms text-muted">{format(new Date(item.created_at), 'dd-MM-yyyy')}</small>
                                 </div>
                               </div>
                               <div>

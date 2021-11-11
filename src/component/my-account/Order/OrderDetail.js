@@ -242,12 +242,11 @@ export default class OrderDetail extends React.Component {
                         <div className="orderstatus">
                           <div className="orderstate"> <span>{product.is_cancel ? "Cancelled" : getOrderStatus(orderDetail.status)}</span></div>
                           <div className="needhlep" onClick={this.toggleModal}>
-                            <Link to={`/order-detail/${product.product_id}/reviews`}>
+                            <Link to={`/order-detail/${product.product_id}/add-reviews`}>
                               <FontAwesomeIcon icon={faStar} /> Rate & Review Product</Link><br />
                             <span><FontAwesomeIcon icon={faQuestionCircle} /> Need Help</span>
                             {product.is_cancel === 0 && <button className="cancelled" onClick={() => (productItem.awb_number.number === null ? this.cancelOrder(productItem.order_id, product) : this.toggleModal)}><FontAwesomeIcon icon={faTimesCircle} /> {productItem.awb_number.number === null ? "Cancel Order" : "Request Cancellation"}</button>}
                           </div>
-
                         </div>
                       </div>
 

@@ -19,12 +19,20 @@ export default class MyReviews extends React.Component {
   getReviews = () => {
     try {
       ReviewService.getReviews().then((result) => {
-        this.setState({ reviews: result.data[0] })
+        this.setState({ reviews: result.data })
       });
     }
     catch (err) {
       console.log(err);
     }
+  }
+  editReview = (pid, review) => {
+
+    this.props.history.push({
+      pathname: `/${pid}/edit-reviews/${review.id}`,
+      state: { reviewData: review }
+
+    });
   }
   render() {
     const { reviews } = this.state;
@@ -38,26 +46,27 @@ export default class MyReviews extends React.Component {
             <div className="card">
               <div className="card-header" style={{ backgroundColor: '#fff' }}><h6>My Reviews <span>{reviews.length}</span></h6></div>
               <div className="card-body">
-                <div className="review_listing">
-                  {/* <div className="review_prouct_img">
+
+                {/* <div className="review_prouct_img">
                     <img src={require('../../public/saree-2-300x300.jpeg')} className="img-fluid" alt="Saree" />
                   </div> */}
-                  <div className="review_product_info  w-100">
-                    <p>{reviews.product_review_title}</p>
-                    <div class="allreview mb-2"><span>3★</span></div>
-                    <p className="review_message">{reviews.product_review_description}</p>
-                    <div className="review_auth d-flex">
-                      <p>{reviews?.user_id?.first_name} {reviews?.user_id?.last_name}</p>
-                      {/* <p>{format(new Date(reviews?.created_at), 'dd-MM-yyyy')}</p> */}
-                      <div className="like-dislike">
-                        <span><FontAwesomeIcon icon={faThumbsUp} /> {reviews?.likes?.like_count} </span>
-                        <span><FontAwesomeIcon icon={faThumbsDown} /> {reviews?.likes?.dislike_count} </span>
+                {reviews.map((item, index) =>
+                  <div className="review_listing" key={index}>
+                    <div className="review_product_info  w-100">
+                      <p>{item.product_review_title}</p>
+                      <div className="allreview mb-2"><span>{item.product_rating}*</span></div>
+                      <p className="review_message">{item.product_review_description}</p>
+                      <div className="review_auth d-flex">
+                        <p>{item?.user_id?.first_name} {item?.user_id?.last_name}</p>
+                        <div className="like-dislike">
+                          <span><FontAwesomeIcon icon={faThumbsUp} /> {item?.likes?.like_count} </span>
+                          <span><FontAwesomeIcon icon={faThumbsDown} /> {item?.likes?.dislike_count} </span>
+                        </div>
                       </div>
+                      <span className="mt-3 d-block" onClick={() => this.editReview(item.product_id, item)}>Edit</span>
                     </div>
-                    <Link className="mt-3 d-block" to="/reviews">Edit</Link>
+                  </div>)}
 
-                  </div>
-                </div>
 
               </div>
             </div>
